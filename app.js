@@ -3,6 +3,8 @@
 import Send from '#lib/send';
 import SendMessage from '#lib/message';
 import {program} from 'commander';
+import splitString from 'split-string';
+
 import 'commander-extras';
 
 let args = program
@@ -23,12 +25,14 @@ let send = new Send();
 // Init all modules
 if (args.verbose > 3) console.log('Init modules:');
 args.module.forEach(rawMod => {
-	let [mod, modArgs] = rawMod.split(/@/, 2);
+	let [, mod, modArgs] = /^(.+?)\s*@\s*(.+)$/.exec(rawMod);
 	if (!mod) throw new Error(`Invalid module spec "${rawMod}"`);
 
 	let modOptions = Object.fromEntries(
-		modArgs
-			.split(/\s*,\s*/)
+		splitString(modArgs, {
+			quotes: ['"', "'"],
+			separator: ',',
+		})
 			.map(rawArg => rawArg.split(/\s*=\s*/, 2))
 	);
 
