@@ -1,0 +1,45 @@
+{
+  "name": "@momsfriendlydevco/send",
+  "version": "1.0.0",
+  "description": "Simple notification system with extendable modules",
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "type": "module",
+  "bin": {
+    "send": "./app.js"
+  },
+  "imports": {
+    "#lib/*": "./lib/*.js"
+  },
+  "exports": {
+    ".": "./lib/push.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MomsFriendlyDevCo/send.git"
+  },
+  "author": "Matt Carter <matt@mfdc.biz>",
+  "bugs": {
+    "url": "https://github.com/MomsFriendlyDevCo/send/issues"
+  },
+  "homepage": "https://github.com/MomsFriendlyDevCo/send#readme",
+  "engineStrict": true,
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@momsfriendlydevco/axiosy": "^1.1.0",
+    "@momsfriendlydevco/joyful": "^1.0.1",
+    "@slack/web-api": "^7.3.4",
+    "commander": "^9.4.1",
+    "commander-extras": "^1.4.0",
+    "joi": "^17.7.0"
+  },
+  "devDependencies": {
+    "@momsfriendlydevco/eslint-config": "^2.0.4",
+    "chai": "^5.1.1",
+    "eslint": "^9.9.1",
+    "mocha": "^10.7.3"
+  }
+}

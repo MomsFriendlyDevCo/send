@@ -1,0 +1,6 @@
+default:
+	../app.js \
+		-vvvv \
+		-m slack@token=FIXME,channel=FIXME,username=FIXME \
+		-m freedcamp@apiKey=FIXME,secret=FIXME,projectId=FIXME,discussionListTitle=FIXME \
+		--text "Hello World"
