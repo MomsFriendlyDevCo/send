@@ -21,17 +21,17 @@ export default class SendEmail extends SendModule {
 		);
 	}
 
-	send(message, options) {
+	async send(message, options) {
 		if (!options.transport) throw new Error('Emailer module requires a transport - perhaps you should be using one of the email-* flavours?');
 
-		return options.transport.sendMail({
+		return await options.transport.sendMail({
 			to: options.to,
 			from: options.from,
 			subject: options.subject,
 			cc: options.cc,
 			bcc: options.bcc,
-			text: message.as('text'),
-			...(message.has('html') && {html: message.as('html')}),
+			text: await message.as('text'),
+			...(message.has('html') && {html: await message.as('html')}),
 		});
 	}
 }

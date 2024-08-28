@@ -13,14 +13,14 @@ export default class SendSlack extends SendModule {
 		}));
 	}
 
-	send(message, options) {
+	async send(message, options) {
 		let slackClient = new WebClient(options.token);
 
-		return this.slackClient.chat.postMessage({
+		return slackClient.chat.postMessage({
 			channel: options.channel,
 			username: options.username.replace(/^@/, ''),
 			as_user: true,
-			text: message.as('markdown#slack'),
+			text: await message.as('markdown#slack'),
 		});
 	}
 }

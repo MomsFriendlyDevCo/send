@@ -23,7 +23,7 @@ export default class SendEmailMailgun extends SendEmail {
 	send(message, options) {
 		return super.send(message, {
 			...options,
-			nodemailer: nodemailer.createTransport(nodemailerMailgun({
+			transport: nodemailer.createTransport(nodemailerMailgun({
 				auth: {
 					api_key: options.apiKey,
 					domain: options.domain,
