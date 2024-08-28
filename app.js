@@ -18,12 +18,12 @@ let args = program
 	.parse(process.argv)
 	.opts();
 
-if (args.verbose > 3) console.log('Running Send with raw args', args);
+if (args.verbose > 3) console.log('STAGE: CLI-parse. Using args', args);
 
 let send = new Send();
 
 // Init all modules
-if (args.verbose > 3) console.log('Init modules:');
+if (args.verbose > 3) console.log('STAGE: Init modules');
 args.module.forEach(rawMod => {
 	let [, mod, modArgs] = /^(.+?)\s*@\s*(.+)$/.exec(rawMod);
 	if (!mod) throw new Error(`Invalid module spec "${rawMod}"`);
@@ -41,15 +41,19 @@ args.module.forEach(rawMod => {
 });
 
 // Gather all messages
-if (args.verbose > 3) console.log('Process messages');
+if (args.verbose > 3) console.log('STAGE: Process messages');
 let messages = [];
 args.text.forEach(rawText => {
 	messages.push(new SendMessage({text: rawText}));
 });
 
 // Actually send messages
-if (!args.dryRun) send.send(messages)
-	.then(()=> {
-		if (args.verbose > 0) console.log('Sent', messages.length, 'messages');
-		process.exit(0);
-	})
+if (args.verbose > 3) console.log('STAGE: Exit');
+if (!args.dryRun) {
+	await send.send(messages);
+	if (args.verbose > 0) console.log('Sent', messages.length, 'messages');
+	process.exit(0);
+} else {
+	console.log('Dry-run mode. Would have sent', messages.length, 'messages');
+	process.exit(0);
+}
