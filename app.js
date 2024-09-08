@@ -5,9 +5,9 @@ import SendMessage from '#lib/message';
 import {program} from 'commander';
 import splitString from 'split-string';
 
-import 'commander-extras';
+import commanderExtras from 'commander-extras';
 
-let args = program
+let args = commanderExtras(program)
 	.name('push')
 	.usage('-m module@opt=val --text [message...]')
 	.option('-m, --module [name]', 'Specify the module(s) to use as a CSV, options are specified as key=vals after an @ symbol', (v, acc) => acc.concat([v]), [])
