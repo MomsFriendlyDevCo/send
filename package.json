@@ -1,6 +1,6 @@
 {
   "name": "@momsfriendlydevco/send",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple notification system with extendable modules",
   "scripts": {
     "lint": "eslint ."
