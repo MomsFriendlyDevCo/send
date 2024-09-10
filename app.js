@@ -8,7 +8,7 @@ import splitString from 'split-string';
 import commanderExtras from 'commander-extras';
 
 let args = commanderExtras(program)
-	.name('push')
+	.name('send')
 	.usage('-m module@opt=val --text [message...]')
 	.option('-m, --module [name]', 'Specify the module(s) to use as a CSV, options are specified as key=vals after an @ symbol', (v, acc) => acc.concat([v]), [])
 	.option('-t, --text [text]', 'Specify a plain text message, use multiple times for multiple messages', (v, acc) => acc.concat([v]), [])
