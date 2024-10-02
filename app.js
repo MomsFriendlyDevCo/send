@@ -51,7 +51,7 @@ args.text.forEach(rawText => {
 if (args.verbose > 3) console.log('STAGE: Exit');
 if (!args.dryRun) {
 	await send.send(messages);
-	if (args.verbose > 0) console.log('Sent', messages.length, 'messages');
+	if (args.verbose > 0) console.log('Sent', messages.length, 'messages', 'via', args.module.length, 'modules');
 	process.exit(0);
 } else {
 	console.log('Dry-run mode. Would have sent', messages.length, 'messages');
