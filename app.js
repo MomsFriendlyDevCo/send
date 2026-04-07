@@ -25,7 +25,10 @@ let send = new Send();
 // Init all modules
 if (args.verbose > 3) console.log('STAGE: Init modules');
 args.module.forEach(rawMod => {
-	let [, mod, modArgs] = /^(.+?)\s*@\s*(.+)$/.exec(rawMod);
+	let result = /^(.+?)\s*@\s*(.+)$/.exec(rawMod);
+	if (!result) throw new Error(`Unable to determine what modules / settings to use - check input format for "${rawMod}"`);
+
+	let [, mod, modArgs] = result;
 	if (!mod) throw new Error(`Invalid module spec "${rawMod}"`);
 
 	let modOptions = Object.fromEntries(
